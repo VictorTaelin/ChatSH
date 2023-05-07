@@ -1,0 +1,22 @@
+{
+  "name": "chatsh",
+  "version": "1.0.0",
+  "description": "Enhance the command line with OpenAI's GPT",
+  "type": "module",
+  "main": "main.js",
+  "bin": {
+    "chatsh": "main.js"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [
+    "cli",
+    "uppercase"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chatgpt": "^5.2.4"
+  }
+}
