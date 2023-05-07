@@ -2,17 +2,19 @@
 
 Chat with GPT from the terminal, with the ability to execute shell scripts.
 
+
 ## Example
 
 ![](example.gif)
 
 ## Why?
 
-The reason I'm publishing this is that this is extremely useful to me, so I
-decided to share. Tools like AutoGPT are too heavy and autonomous, and
-copypasting contents from ChatGPT web into the command line sucks. ChatSH lets
-you use ChatGPT directly from the terminal, and execute commands suggested by
-it, making it an extremely powerful productivity tool.
+The reason I'm publishing this is that it is extremely useful to me, so I
+decided to share. Tools like AutoGPT are too heavy and autonomous, and copying
+contents from ChatGPT web into the command line is cumbersome. ChatSH lets you
+use ChatGPT directly from the terminal and execute commands suggested by it,
+making it an extremely powerful productivity tool.
+
 
 ## Usage
 
@@ -22,7 +24,11 @@ it, making it an extremely powerful productivity tool.
 npm install -g ChatSH
 ```
 
-2. Add your OpenAI Token to ~/.config/openai.token
+2. Add your OpenAI Token to `~/.config/openai.token`:
+
+```bash
+echo "YOUR_OPENAI_TOKEN" > ~/.config/openai.token
+```
 
 3. Call ChatSH:
 
