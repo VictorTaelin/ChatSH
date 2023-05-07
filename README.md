@@ -22,7 +22,7 @@ thin wrapper around the GPT API.
 1. Install with `npm`:
 
 ```bash
-npm install -g ChatSH
+npm install -g chatsh
 ```
 
 2. Add your OpenAI Token to `~/.config/openai.token`:
