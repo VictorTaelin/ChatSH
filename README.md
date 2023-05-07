@@ -1,6 +1,6 @@
 # ChatSH
 
-Chat with GPT from the terminal, and let it execute shell scripts and perform tasks for you.
+Chat with GPT from the terminal, and let it execute shell scripts and perform tasks for you. Because what could go wrong?
 
 
 ## Example
@@ -55,3 +55,10 @@ EXECUTE? [y/n]y
 ./Bits/to_nat.kind2
 ./U120/to_nat.kind2
 ```
+
+## Warning
+
+I think this should be obvious but since I've published it - always read carefully
+before executing a command. There is a reason there is a confirmation message. GPT
+could output anything, including commands that do serious harm to your system by
+accident. You're responsible for checking your commands. You've been warned!
