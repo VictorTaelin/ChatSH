@@ -13,7 +13,8 @@ The reason I'm publishing this is that it is extremely useful to me, so I
 decided to share. Tools like AutoGPT are too heavy and autonomous, and copying
 contents from ChatGPT web into the command line is cumbersome. ChatSH lets you
 use ChatGPT directly from the terminal and execute commands suggested by it,
-making it an extremely powerful productivity tool.
+making it an extremely powerful productivity tool, even though it is just a
+thin wrapper around the GPT API.
 
 
 ## Usage
