@@ -4,7 +4,7 @@ Chat with GPT from the terminal, with the ability to execute shell scripts.
 
 ## Example
 
-![](example.mp4)
+![](example.gif)
 
 ## Why?
 
