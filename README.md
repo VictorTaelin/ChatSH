@@ -33,16 +33,14 @@ chatsh 4 # using gpt-4
 
 4. Ask it to do something:
 
-```bash
+```sh
 v@v ~/vic/dev/kindex$ chatsh 4
 Welcome to ChatSH. Model: gpt-4
 
 $ list all files below this directory that include Nat on its name
 
-\`\`\`sh
 # Find all files below the current directory that include "Nat" in their name
 find . -type f -iname "*Nat*"
-\`\`\`
 
 EXECUTE? [y/n]y
 ./Fin/to_nat.kind2
