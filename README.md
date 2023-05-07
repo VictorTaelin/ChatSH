@@ -1,6 +1,6 @@
 # ChatSH
 
-Chat with GPT from the terminal, and let it execute shell scripts and perform tasks for you. Because what could go wrong?
+Chat with GPT from the terminal, and let it execute shell scripts and perform tasks for you. What could go wrong?
 
 
 ## Example
