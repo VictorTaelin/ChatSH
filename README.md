@@ -1,6 +1,6 @@
 # ChatSH
 
-Chat with GPT from the terminal, with the ability to execute shell scripts.
+Chat with GPT from the terminal, and let it execute shell scripts and perform tasks for you.
 
 
 ## Example
