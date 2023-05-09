@@ -220,16 +220,9 @@ async function get_shell() {
 
 function get_kind_examples() {
   return `
-# Example types:
-
 type Bool {
   true
   false
-}
-
-type Nat {
-  zero
-  succ (pred: Nat)
 }
 
 type List (t) {
@@ -247,18 +240,6 @@ type Vector <a: Type> ~ (len: Nat) {
   cons (len: Nat) (head: a) (tail: Vector a len) : Vector a (Nat.succ len)
 }
 
-type Equal <t> (a: t) ~ (b: t) {
-  refl : Equal t a a
-}
-
-record V3 {
-  x: F60
-  y: F60
-  z: F60
-}
-
-# Example programs:
-
 Bool.not (b: Bool) : Bool
 Bool.not Bool.true  = Bool.false
 Bool.not Bool.false = Bool.true
@@ -267,9 +248,13 @@ List.head <a> (xs: List a) : Maybe (List a)
 List.head List.nil              = Maybe.none
 List.head (List.cons head tail) = Maybe.some head
 
-Nat.add (a: Nat) (b: Nat) : Nat
-Nat.add (Nat.succ a) b = Nat.succ (Nat.add a b)
-Nat.add Nat.zero     b = b
+// Or, using match:
+List.head <a> (xs: List a) : Maybe (List a) {
+  match List xs {
+    nil => Maybe.none
+    cons => Maybe.some xs.head
+  }
+}
 
 List.fold <a> <p> (xs: List a) : p -> (a -> p -> p) -> p
 List.fold List.nil              = nil => cons => nil
@@ -280,34 +265,17 @@ Sigma.snd (Sigma.new x y) = y
 
 Vector.create <a> (len: Nat) (f: Nat -> a) : Vector a len
 Vector.create Nat.zero     f = Vector.nil
-Vector.create (Nat.succ p) f = Vector.cons p (f Nat.zero) (Vector.create p (x => f (Nat.succ x)))
-
-Equal.rewrite <t> <a: t> <b: t> (e: Equal t a b) -(p: t -> Type) (x: p a) : p b
-Equal.rewrite _ _ _ (Equal.refl _ k) p x = x :: p k
-
-// note: let syntax doesn't use 'in'
-V3.dot (a: V3) (b: V3) : F60
-V3.dot (V3 ax ay az) (V3 bx by bz) =
-  let cx = (* ax bx)
-  let cy = (* ay by)
-  let cz = (* az bz)
-  (+ cx (+ cy cz))
-
-// note: match expressions are also available
-Nat.add (a: Nat) (b: Nat) : Nat {
-  match Nat a {
-    zero => b
-    succ => Nat.succ(Nat.add(a.pred, b))
-  }
+Vector.create (Nat.succ p) f =
+  let head = f Nat.zero
+  let tail = Vector.create p (x => f (Nat.succ x))
+  Vector.cons p head tail
 
 Main : IO Unit {
   do IO {
-    ask name = IO.prompt "what is your name?"
-    IO.print (String.join "" ["Hello, " name "!"])
+    ask name = IO.prompt "your name?"
+    IO.print (String.join "" ["Hi " name])
   }
 }
-
-# Example proofs:
 
 // Proof: a == a + 0
 Nat.add.comm.zero (a: Nat) : Equal Nat a (Nat.add a Nat.zero)
@@ -319,31 +287,18 @@ Nat.add.comm.zero Nat.zero =
 // goal: S a == S (a + 0)
 Nat.add.comm.zero (Nat.succ a) =
   // a == a + 0
-  let ind = (Nat.add.comm.zero a)
+  let ind = Nat.add.comm.zero a
   // S a == S (a + 0)
-  let app = Equal.apply (x => Nat.succ x) ind
-  app
-
-// Proof: (a + 1) + b = a + (b + 1)
-Nat.add.comm.succ (a: Nat) (b: Nat) : Equal Nat (Nat.add a (Nat.succ b)) (Nat.succ (Nat.add a b))
-// goal: S b == S b
-Nat.add.comm.succ Nat.zero b =
-  // S b == S b
-  let ret = Equal.refl
-  ret
-// goal: S (a + S b) == S (S (a + b))
-Nat.add.comm.succ (Nat.succ a) b =
-  // a + S b == S (a + b)
-  let ind = Nat.add.comm.succ a b
-  // S (a + S b) == S (S (a + b))
   let app = Equal.apply (x => Nat.succ x) ind
   app
 
 // Proof: (S a) != 0
 Nat.succ_not_zero (a: Nat) (e: Equal Nat (Nat.succ a) Nat.zero) : Empty
 Nat.succ_not_zero a e =
-  let app = Equal.apply (x => Nat.is_zero x) e // false == true
-  let emp = Bool.false_not_true app // empty
+  // false == true
+  let app = Equal.apply (x => Nat.is_zero x) e
+  // empty
+  let emp = Bool.false_not_true app
   emp
 `;
 };
