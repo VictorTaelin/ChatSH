@@ -1,6 +1,6 @@
 {
   "name": "chatsh",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Enhance the command line with OpenAI's GPT",
   "type": "module",
   "main": "main.js",

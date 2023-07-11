@@ -114,12 +114,13 @@ ${get_kind_examples()}
 // initialize ChatGPT API with your API key
 const api = new ChatGPTAPI({
   apiKey: TOKEN,
+  maxModelTokens: 8096,
   systemMessage: SYSTEM,
   completionParams: {
     model: MODEL,
     stream: true,
     temperature: 0.5,
-    max_tokens: 512,
+    max_tokens: 1024,
   }
 });
 
@@ -210,7 +211,7 @@ async function get_token() {
 }
 
 async function get_model() {
-  return process.argv[2] === "4" ? "gpt-4" : "gpt-3.5-turbo";
+  return "gpt-4";
 }
 
 async function get_shell() {
