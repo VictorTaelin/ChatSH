@@ -17,6 +17,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "chatgpt": "^5.2.4"
+    "chatgpt": "^5.2.4",
+    "event-iterator": "^2.0.0",
+    "ollama": "^0.4.9"
   }
 }
