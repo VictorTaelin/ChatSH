@@ -16,6 +16,17 @@ use ChatGPT directly from the terminal and execute commands suggested by it,
 making it an extremely powerful productivity tool, even though it is just a
 thin wrapper around the GPT API.
 
+## THIS IS OUTDATED - LAST VERSION ON VICTORTAELIN/AI-SCRIPTS
+
+https://github.com/VictorTaelin/AI-scripts
+
+---
+
+---
+
+---
+
+Old stuff:
 
 ## Usage
 
